@@ -4,7 +4,7 @@
 class Repository {
 public:
     Repository(const std::string& path) : path_(path) {
-        std::cout << "Repository at " << path_ << " 积己凳.\n";
+		std::cout << "Repository at " << path_ << " 积己凳.\n";
     }
     ~Repository() {
         std::cout << "Repository at " << path_ << " 家戈凳.\n";

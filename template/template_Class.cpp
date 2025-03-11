@@ -1,11 +1,5 @@
-
-//template<class T> 는 template<typename T>와 같은 의미이다.
-//template<class T> 는 T라는 타입 매개변수를 선언하는 것이다.
-//T는 실제 사용 시 구체적인 데이터 타입으로 대체된다. 
-//예를 들어, MyContainer<int> intContainer(5); 라고 선언하면 T는 int로 대체된다.
-//MyContainer<double> doubleContainer(5); 라고 선언하면 T는 double로 대체된다.
-
-template<class T>
+template<typename T>  //typename == T   (int, double , class 등을 T로 치환(매개변수로)하겠다는 것)
+//Class 선언부에서는 T를 사용할 수 있고 인스턴스 선언시에는 double, int, MyContainer 등으로 치환됨. 즉 MyContainer 또한 typename 이다.  
 class MyContainer {
 public:
     MyContainer(int size) : size_(size), data_(new T[size]) {}
