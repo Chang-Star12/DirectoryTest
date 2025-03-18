@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cstring> // strlen, strcpy 사용
+#include <Windows.h>
+/*
 
-// Windows 환경에서 LPSTR은 char*와 동일하게 정의됩니다.
-typedef char* LPSTR;
+"클래스는 데이터(상태)와 그 데이터를 다루는 로직(행위)을 하나로 묶어 캡슐화(encapsulation)한 사용자 정의 자료형이다."
 
+*/
 class Repositor {
 public:
     // 생성자: LPSTR 형식의 문자열(경로)을 받아 내부적으로 복사합니다.
@@ -39,20 +41,11 @@ int main() {
     Repositor* repo = new Repositor(repoPath);
     repo->open();
 
-    /*
-    객체 생성과 역할 분리:
-    Repository 클래스는 단순한 문자열 데이터 이상으로,
-    저장소와 관련된 여러 기능(예: open 메서드 등)을 캡슐화합니다.
-    따라서 단순히 repoPath 변수에 저장된 문자열을 사용하는 것이 아니라,
-    Repository 객체를 생성하여 해당 경로와 관련된 로직을 처리하도록 하는 것입니다.
-    */
 
+    // 동적 할당된 Repository 객체와 문자열 메모리를 수동으로 해제
+    delete repo;
+    delete[] repoPath;
 
-    /*
-        // 동적 할당된 Repository 객체와 문자열 메모리를 수동으로 해제
-        delete repo;
-        delete[] repoPath;
-
-        return 0;
+    return 0;
     }
-    */
+ */
