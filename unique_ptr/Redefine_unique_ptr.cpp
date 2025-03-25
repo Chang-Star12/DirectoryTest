@@ -13,7 +13,7 @@ private:
 
 public:
     // 생성자: 초기화
-    explicit unique_ptr(T* p = nullptr) : ptr(p) {}
+    explicit unique_ptr(T* p) : ptr(p) {}
 
     // 소멸자: 자동으로 메모리 해제
     ~unique_ptr() { delete ptr; }
@@ -22,14 +22,14 @@ public:
     unique_ptr(const unique_ptr&) = delete;
     unique_ptr& operator=(const unique_ptr&) = delete;
 
-    // 이동 생성자 (move constructor)
-    unique_ptr(unique_ptr&& other) noexcept : ptr(other.ptr)  //int& b = a;    // lvalue reference, 기존 변수(a)를 참조
-                                                              //int&& c = 20;  // rvalue reference, 임시 객체(20)를 참조
+    // 이동 생성자 (move constructor): 복사 비용 감소
+    unique_ptr(unique_ptr&& other) noexcept : ptr(other.ptr)  //int& b = a;     // L- value reference, 기존 변수(a)를 참조
+                                                              //int&& c = 20;  // R - value reference, 임시 객체(20)를 참조
     {
 		other.ptr = nullptr; // other.ptr 소유권이전 이후 nullptr로 초기화
     }
 
-    // 이동 할당 연산자 (다른객체의 소유권을 '가져오는' 행위)
+    // 이동 할당 연산자: 값 복사 
     unique_ptr& operator=(unique_ptr&& other) noexcept 
     {
         if (this != &other) 
@@ -45,7 +45,7 @@ public:
     {
         T* temp = ptr;
         ptr = nullptr;
-        return temp;   //release() 함수는 단순히 포인터를 nullptr로 만드는 것뿐만 아니라, 기존에 관리하던 자원의 소유권을 외부로 이전시키는 목적을 가지고 있음.
+        return temp;   
     }
 
     // 객체 접근 연산자 (->, *)
